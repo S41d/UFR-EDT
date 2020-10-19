@@ -1,3 +1,5 @@
+package reader;
+
 import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
@@ -5,25 +7,37 @@ import biweekly.component.VEvent;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Comparator;
 
-public class IcsReader {
-    public void read() throws IOException {
-        File file = new File("ADECal.ics");
-        ICalendar iCalendar = Biweekly.parse(file).first();
-        for (VEvent event : iCalendar.getEvents()) {
-            String dateTimeStamp = event.getDateTimeStamp().getValue().toString();
-            String dateStart = event.getDateStart().getValue().toString();
-            String dateEnd = event.getDateEnd().getValue().toString();
-            String summary = event.getSummary().getValue();
-            String location = event.getLocation().getValue();
-            String description = event.getDescription().getValue();
-            System.out.println("dateTimeStamp = " + dateTimeStamp);
-            System.out.println("dateStart = " + dateStart);
-            System.out.println("dateEnd = " + dateEnd);
-            System.out.println("summary = " + summary);
-            System.out.println("location = " + location);
-            System.out.println("description = " + description);
+public class Main {
+    ArrayList<Day> days = new ArrayList<>();
+
+    public void addToDay(VEvent event) {
+        boolean dayExists = false;
+        for (Day day : days) {
+            if (day.hasDate(event.getDateStart().getValue())) {
+                dayExists = true;
+                day.addEvent(event);
+                break;
+            }
         }
+        if (!dayExists){
+            days.add(new Day(event.getDateStart().getValue()));
+            days.get(days.size() - 1).addEvent(event);
+        }
+    }
+
+    public void read() throws IOException {
+        File file = new File("./downloaded/calendar.ics");
+        ICalendar iCalendar = Biweekly.parse(file).first();
+        iCalendar.getEvents().forEach(this::addToDay);
+        for (Day day : days) {
+            day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()));
+        }
+        days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate()));
+        days.forEach(System.out::println);
+        System.out.println(days.size());
     }
 
     void downloadFile() throws IOException {
@@ -49,7 +63,6 @@ public class IcsReader {
         int read;
 
         while ((read = inputStream.read(buffer, 0, 1024)) >= 0) {
-            System.out.println(read);
             outputStream.write(buffer, 0, read);
         }
 
@@ -60,6 +73,6 @@ public class IcsReader {
     }
 
     public static void main(String[] args) throws IOException {
-        new IcsReader().read();
+        new Main().read();
     }
 }

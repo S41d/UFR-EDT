@@ -1,0 +1,16 @@
+.week-days {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+.event-holder {
+    -fx-content-display: center;
+    -fx-border-width: 1px;
+    -fx-border-color: gray;
+    -fx-border-style: solid;
+    -fx-alignment: TOP_CENTER;
+}
+
+.event-holder > .week-days {
+    -fx-min-width: 90%;
+}

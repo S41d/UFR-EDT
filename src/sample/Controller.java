@@ -1,15 +1,30 @@
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class Controller {
-    @FXML
-    private Label label;
 
     @FXML
-    void showText(ActionEvent event) {
-        System.out.println(label.getText());
-    }
+    private VBox mondayContainer;
+
+    @FXML
+    private VBox tuesdayContainer;
+
+    @FXML
+    private VBox wednsdayContainer;
+
+    @FXML
+    private VBox thursdayContainer;
+
+    @FXML
+    private VBox fridayContainer;
+
+    @FXML
+    private VBox saturdayContainer;
+
+    @FXML
+    private VBox sundayContainer;
+
 }
+
