@@ -4,6 +4,7 @@ import biweekly.component.VEvent;
 import biweekly.util.ICalDate;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Day {
     ICalDate date;
@@ -54,5 +55,11 @@ public class Day {
     public boolean hasDate(ICalDate date) {
         return this.date.getRawComponents().getDate() == date.getRawComponents().getDate()
                 && this.date.getRawComponents().getMonth() == date.getRawComponents().getMonth();
+    }
+
+    public int getWeekOfYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 }

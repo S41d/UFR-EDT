@@ -16,6 +16,19 @@ public class Read {
     File file = new File("./downloaded/calendar.ics");
 
     public void addToWeek(Day day) {
+        boolean weekExists = false;
+        for (Week week : weeks) {
+            if (week.getWeekNumber() == day.getWeekOfYear()){
+                weekExists = true;
+                week.addDay(day);
+                break;
+            }
+        }
+
+        if (!weekExists){
+            weeks.add(new Week(day.getWeekOfYear()));
+            weeks.get(weeks.size() -1).addDay(day);
+        }
 
     }
 
@@ -28,7 +41,7 @@ public class Read {
                 break;
             }
         }
-        if (!dayExists){
+        if (!dayExists) {
             days.add(new Day(event.getDateStart().getValue()));
             days.get(days.size() - 1).addEvent(event);
         }
@@ -40,7 +53,8 @@ public class Read {
         iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
         days.forEach(day -> day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
         days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate())); // Sort days by date
-        days.forEach(System.out::println);
+        days.forEach(this::addToWeek);
+        weeks.forEach(System.out::println);
     }
 
     void downloadFile() throws IOException {
