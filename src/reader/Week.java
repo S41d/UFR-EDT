@@ -3,19 +3,20 @@ package reader;
 import java.util.ArrayList;
 
 public class Week {
-    int weekNumber;
-    ArrayList<Day> days = new ArrayList<>();
+    ArrayList<Day> days;
 
-    public Week(int weekNumber, ArrayList<Day> days) {
-        this.weekNumber = weekNumber;
-        this.days = days;
+    public Week() {
+        this.days = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return "Week{" +
-                "weekNumber=" + weekNumber +
-                ", days=" + days +
-                '}';
+        return ">>>>>>>>>>>>>>> WEEK <<<<<<<<<<<<<<<<" +
+                "days=" + days +
+                ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+    }
+
+    public void addDay(Day day) {
+        this.days.add(day);
     }
 }

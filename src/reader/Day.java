@@ -17,6 +17,21 @@ public class Day {
         return events;
     }
 
+    public String getEventsStr() {
+        StringBuilder returnString = new StringBuilder();
+        int eventCounter = 1;
+        for (VEvent event : events) {
+            returnString.append("--- Event ").append(eventCounter).append(" --- \n")
+                    .append("DateStart: ").append(event.getDateStart().getValue().toString()).append("\n")
+                    .append("DateEnd: ").append(event.getDateEnd().getValue().toString()).append("\n")
+                    .append("Summary: ").append(event.getSummary().getValue()).append("\n")
+                    .append("Location: ").append(event.getLocation().getValue()).append("\n")
+                    .append("Description: ").append(event.getDescription().getValue()).append("\n");
+            eventCounter++;
+        }
+        return returnString.toString();
+    }
+
     public Day(ICalDate date) {
         this.date = date;
         this.events = new ArrayList<>();
@@ -24,10 +39,12 @@ public class Day {
 
     @Override
     public String toString() {
-        return "\n############# Day ##############" +
-                "\n ----- DATE ----- \n" + date +
-                "\n ----- EVENTS ----- \n" + events +
-                "\n###############################\n";
+        return "\n------------- Day --------------" +
+                "\n ----- DATE ----- \n" +
+                date +
+                "\n ----- EVENTS ----- \n" +
+                getEventsStr() +
+                "--------------------------------";
     }
 
     public void addEvent(VEvent event) {

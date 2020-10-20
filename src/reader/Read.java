@@ -10,8 +10,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Main {
+public class Read {
     ArrayList<Day> days = new ArrayList<>();
+    ArrayList<Week> weeks = new ArrayList<>();
+    File file = new File("./downloaded/calendar.ics");
+
+    public void addToWeek(Day day) {
+
+    }
 
     public void addToDay(VEvent event) {
         boolean dayExists = false;
@@ -28,16 +34,13 @@ public class Main {
         }
     }
 
-    public void read() throws IOException {
-        File file = new File("./downloaded/calendar.ics");
+    public void run() throws IOException {
+        downloadFile();
         ICalendar iCalendar = Biweekly.parse(file).first();
-        iCalendar.getEvents().forEach(this::addToDay);
-        for (Day day : days) {
-            day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()));
-        }
-        days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate()));
+        iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
+        days.forEach(day -> day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
+        days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate())); // Sort days by date
         days.forEach(System.out::println);
-        System.out.println(days.size());
     }
 
     void downloadFile() throws IOException {
@@ -57,7 +60,6 @@ public class Main {
 
         // Reading the response and writing to a file
         BufferedInputStream inputStream = new BufferedInputStream(connection.getInputStream());
-        File file = new File("./downloaded/calendar.ics");
         BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file), 1024);
         byte[] buffer = new byte[1024];
         int read;
@@ -72,7 +74,11 @@ public class Main {
         System.out.println("File downloaded");
     }
 
+    public Read() throws IOException {
+        run();
+    }
+
     public static void main(String[] args) throws IOException {
-        new Main().read();
+        new Read();
     }
 }
