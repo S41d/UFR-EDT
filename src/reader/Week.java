@@ -3,11 +3,15 @@ package reader;
 import java.util.ArrayList;
 
 public class Week {
-    private int weekNumber;
-    private ArrayList<Day> days;
+    private final int weekNumber;
+    private final ArrayList<Day> days;
 
     public int getWeekNumber() {
         return weekNumber;
+    }
+
+    public ArrayList<Day> getDays () {
+        return this.days;
     }
 
     public Week(int weekNumber) {
