@@ -25,7 +25,8 @@ hs_err_pid*
 
 *.iml
 
-/idea
-/vscode
-/javafx-sdk-15
-/biweekly
+/.idea
+/.vscode
+/dependecies/javafx-sdk-15
+/dependecies/biweekly
+/dependecies

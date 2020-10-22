@@ -2,8 +2,8 @@ package sample;
 
 import biweekly.component.VEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -18,8 +18,8 @@ import java.util.Date;
 
 public class Controller {
     public ImageView imageView;
-    @FXML
-    private VBox mondayContainer,
+    public Button nextButton, previousButton;
+    public VBox mondayContainer,
             tuesdayContainer,
             wednesdayContainer,
             thursdayContainer,
@@ -117,7 +117,19 @@ public class Controller {
 
     @FXML
     public void initialize() {
-//        imageView.setImage(new Image(getClass().getResourceAsStream("../../downloaded/icon.png")));
+        // set previous button disabled for the first week
+        previousButton.setDisable(this.weekNumber == 0);
+        // set next button disabled for the last week
+        nextButton.setDisable(this.weekNumber == reader.getWeeks().size() - 1);
+        // empty all containers
+        mondayContainer.getChildren().clear();
+        tuesdayContainer.getChildren().clear();
+        wednesdayContainer.getChildren().clear();
+        thursdayContainer.getChildren().clear();
+        fridayContainer.getChildren().clear();
+        saturdayContainer.getChildren().clear();
+        sundayContainer.getChildren().clear();
+
         setWeek(reader.getWeeks().get(weekNumber));
         for (Day day : week.getDays()) {
             for (VEvent event : day.getEvents()) {

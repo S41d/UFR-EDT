@@ -10,7 +10,7 @@ public class Week {
         return weekNumber;
     }
 
-    public ArrayList<Day> getDays () {
+    public ArrayList<Day> getDays() {
         return this.days;
     }
 
