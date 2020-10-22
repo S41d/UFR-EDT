@@ -7,17 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("root.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1100, 600));
-        primaryStage.resizableProperty().setValue(false);
+        primaryStage.setTitle("UFR emploi du temps");
+        primaryStage.setScene(new Scene(root, 1600, 800));
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         launch(args);
     }
 }

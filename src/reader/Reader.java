@@ -10,24 +10,29 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Read {
+public class Reader {
     ArrayList<Day> days = new ArrayList<>();
     ArrayList<Week> weeks = new ArrayList<>();
-    File file = new File("./downloaded/calendar.ics");
+
+    public ArrayList<Week> getWeeks() {
+        return weeks;
+    }
+
+    File file = new File("./downloaded/calendar.ics"); // path to our calendar file
 
     public void addToWeek(Day day) {
         boolean weekExists = false;
         for (Week week : weeks) {
-            if (week.getWeekNumber() == day.getWeekOfYear()){
+            if (week.getWeekNumber() == day.getWeekOfYear()) { // if the week already is in the list the add to week
                 weekExists = true;
                 week.addDay(day);
                 break;
             }
         }
 
-        if (!weekExists){
+        if (!weekExists) { // if the week isn't in the list then create a new week and add the day to it
             weeks.add(new Week(day.getWeekOfYear()));
-            weeks.get(weeks.size() -1).addDay(day);
+            weeks.get(weeks.size() - 1).addDay(day);
         }
 
     }
@@ -35,13 +40,13 @@ public class Read {
     public void addToDay(VEvent event) {
         boolean dayExists = false;
         for (Day day : days) {
-            if (day.hasDate(event.getDateStart().getValue())) {
+            if (day.hasDate(event.getDateStart().getValue())) { // if the day is already in the list then add to day
                 dayExists = true;
                 day.addEvent(event);
                 break;
             }
         }
-        if (!dayExists) {
+        if (!dayExists) { // if day isn't in the list then create a new day and add the event to it
             days.add(new Day(event.getDateStart().getValue()));
             days.get(days.size() - 1).addEvent(event);
         }
@@ -49,12 +54,11 @@ public class Read {
 
     public void run() throws IOException {
         downloadFile();
-        ICalendar iCalendar = Biweekly.parse(file).first();
+        ICalendar iCalendar = Biweekly.parse(file).first(); // parse the downloaded file
         iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
         days.forEach(day -> day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
         days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate())); // Sort days by date
-        days.forEach(this::addToWeek);
-        weeks.forEach(System.out::println);
+        days.forEach(this::addToWeek); //add days to weeks
     }
 
     void downloadFile() throws IOException {
@@ -88,11 +92,15 @@ public class Read {
         System.out.println("File downloaded");
     }
 
-    public Read() throws IOException {
-        run();
+    public Reader() {
+        try {
+            run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void main(String[] args) throws IOException {
-        new Read();
+    public static void main(String[] args) {
+        new Reader();
     }
 }

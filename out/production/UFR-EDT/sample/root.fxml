@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,54 +9,108 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="1111.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <AnchorPane prefHeight="595.0" prefWidth="225.0" style="-fx-background-color: cyan;">
-      <ImageView fitHeight="43.0" fitWidth="54.0" layoutX="91.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@../../downloaded/calendar_today-black-18dp/2x/baseline_calendar_today_black_18dp.png" />
-      </ImageView>
-      <Label layoutX="12.0" layoutY="197.0" prefHeight="34.0" prefWidth="202.0" text="UFR Emploi du temps" textAlignment="CENTER">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-   </AnchorPane>
-   <HBox prefHeight="595.0" prefWidth="886.0" stylesheets="@style.css">
-      <children>
-         <VBox fx:id="mondayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Lundi" textAlignment="CENTER" />
-            </children>
-         </VBox>
-         <VBox fx:id="tuesdayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Mardi" />
-            </children>
-         </VBox>
-         <VBox fx:id="wednsdayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Mercredi" />
-            </children>
-         </VBox>
-         <VBox fx:id="thursdayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Jeudi" />
-            </children>
-         </VBox>
-         <VBox fx:id="fridayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Vendredi" />
-            </children>
-         </VBox>
-         <VBox fx:id="saturdayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Samedi" />
-            </children>
-         </VBox>
-         <VBox fx:id="sundayContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="100.0" styleClass="event-holder" HBox.hgrow="ALWAYS">
-            <children>
-               <Label styleClass="week-days" text="Dimanche" />
-            </children>
-         </VBox>
-      </children>
-   </HBox>
-</HBox>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" style="-fx-background-color: #84fcc8;">
+        <ImageView fx:id="imageView" fitHeight="43.0" fitWidth="54.0" layoutX="20.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../downloaded/icon.png" />
+        </ImageView>
+        <Label layoutX="80.0" layoutY="11.0" prefHeight="34.0" prefWidth="250.0" text="UFR Emploi du temps" textAlignment="CENTER">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+    </AnchorPane>
+    <HBox prefWidth="886.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+        <VBox maxHeight="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label minWidth="-Infinity" prefHeight="38.0" prefWidth="150.0" styleClass="week-days" text="Lundi" textAlignment="CENTER" />
+            <VBox fx:id="mondayContainer" maxHeight="1.7976931348623157E308" prefHeight="553.0" prefWidth="30.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Mardi" />
+            <VBox fx:id="tuesdayContainer" prefHeight="553.0" prefWidth="83.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Mercredi" />
+            <VBox fx:id="wednesdayContainer" prefHeight="553.0" prefWidth="26.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Jeudi" />
+            <VBox fx:id="thursdayContainer" prefHeight="552.0" prefWidth="39.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Vendredi" />
+            <VBox fx:id="fridayContainer" prefHeight="553.0" prefWidth="43.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Samedi" />
+            <VBox fx:id="saturdayContainer" prefHeight="553.0" prefWidth="12.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+            <Label prefWidth="150.0" styleClass="week-days" text="Dimanche" />
+            <VBox fx:id="sundayContainer" prefHeight="553.0" prefWidth="27.0" VBox.vgrow="ALWAYS">
+                <styleClass>
+                    <String fx:value="VBox" />
+                    <String fx:value="container" />
+                </styleClass>
+            </VBox>
+            <styleClass>
+                <String fx:value="event-holder" />
+                <String fx:value="VBox" />
+            </styleClass>
+        </VBox>
+    </HBox>
+</VBox>

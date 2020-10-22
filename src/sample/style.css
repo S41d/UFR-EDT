@@ -1,16 +1,50 @@
+* {
+    -fx-font-size: 1.4em;
+}
+
+.VBox {
+    -fx-background-color: grey;
+    -fx-fill-width: true;
+    -fx-alignment: TOP_CENTER;
+}
+
 .week-days {
-    -fx-background-color: red;
+    -fx-background-color: grey;
+    -fx-padding: 10px;
     -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-fill-width: true;
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
 }
 
 .event-holder {
     -fx-content-display: center;
-    -fx-border-width: 1px;
+    -fx-border-width: 0 1px 0 1px;
     -fx-border-color: gray;
     -fx-border-style: solid;
+}
+
+.container {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 2px 0 0 0;
+}
+
+.event-main {
+    -fx-background-color: #84fcc8;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0;
     -fx-alignment: TOP_CENTER;
 }
 
-.event-holder > .week-days {
-    -fx-min-width: 90%;
+.event-details {
+    -fx-background-color: #6dd9b2;
+    -fx-text-alignment: center;
+}
+
+.event-location {
+    -fx-text-alignment: justify;
 }
