@@ -24,8 +24,7 @@ public class Controller {
             wednesdayContainer,
             thursdayContainer,
             fridayContainer,
-            saturdayContainer,
-            sundayContainer;
+            saturdayContainer;
 
     Week week;
     int weekNumber = 0;
@@ -81,9 +80,6 @@ public class Controller {
 
         // add the container to the respective day
         switch (dayOfWeek(day)) {
-            case 1:
-                sundayContainer.getChildren().add(mainContainer);
-                break;
             case 2:
                 mondayContainer.getChildren().add(mainContainer);
                 break;
@@ -128,7 +124,6 @@ public class Controller {
         thursdayContainer.getChildren().clear();
         fridayContainer.getChildren().clear();
         saturdayContainer.getChildren().clear();
-        sundayContainer.getChildren().clear();
 
         setWeek(reader.getWeeks().get(weekNumber));
         for (Day day : week.getDays()) {

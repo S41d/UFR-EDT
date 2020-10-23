@@ -34,7 +34,6 @@ public class Reader {
             weeks.add(new Week(day.getWeekOfYear()));
             weeks.get(weeks.size() - 1).addDay(day);
         }
-
     }
 
     public void addToDay(VEvent event) {

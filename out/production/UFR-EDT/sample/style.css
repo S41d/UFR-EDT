@@ -46,6 +46,6 @@
 }
 
 .event-location {
-    -fx-text-alignment: justify;
+    -fx-text-alignment: center;
 }
 
