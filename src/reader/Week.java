@@ -1,10 +1,16 @@
 package reader;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Week {
     private final int weekNumber;
     private final ArrayList<Day> days;
+
+    public static int getThisWeek() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.WEEK_OF_YEAR);
+    }
 
     public int getWeekNumber() {
         return weekNumber;

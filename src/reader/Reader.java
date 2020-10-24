@@ -13,6 +13,8 @@ import java.util.Comparator;
 public class Reader {
     ArrayList<Day> days = new ArrayList<>();
     ArrayList<Week> weeks = new ArrayList<>();
+    int maxWeekNumber = 0;
+    int minWeekNumber = 0;
 
     public ArrayList<Week> getWeeks() {
         return weeks;
@@ -20,19 +22,23 @@ public class Reader {
 
     File file = new File("./downloaded/calendar.ics"); // path to our calendar file
 
+    public void createWeeks() {
+        minWeekNumber = Week.getThisWeek();
+        days.forEach(day -> {
+            maxWeekNumber = Math.max(maxWeekNumber, day.getWeekOfYear());
+            minWeekNumber = Math.min(minWeekNumber, day.getWeekOfYear());
+        });
+        for (int i = minWeekNumber; i < maxWeekNumber; i++) {
+            weeks.add(new Week(i));
+        }
+    }
+
     public void addToWeek(Day day) {
-        boolean weekExists = false;
         for (Week week : weeks) {
-            if (week.getWeekNumber() == day.getWeekOfYear()) { // if the week already is in the list the add to week
-                weekExists = true;
+            if (week.getWeekNumber() == day.getWeekOfYear()) {
                 week.addDay(day);
                 break;
             }
-        }
-
-        if (!weekExists) { // if the week isn't in the list then create a new week and add the day to it
-            weeks.add(new Week(day.getWeekOfYear()));
-            weeks.get(weeks.size() - 1).addDay(day);
         }
     }
 
@@ -57,7 +63,9 @@ public class Reader {
         iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
         days.forEach(day -> day.events.sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
         days.sort((day, t1) -> day.date.compareTo(t1.date.getRawComponents().toDate())); // Sort days by date
+        createWeeks();
         days.forEach(this::addToWeek); //add days to weeks
+        weeks.forEach(System.out::println);
     }
 
     void downloadFile() throws IOException {
