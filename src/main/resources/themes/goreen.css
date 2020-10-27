@@ -1,0 +1,100 @@
+* {
+    -fx-font-family: "Nimbus Sans";
+}
+
+/* --- Loading --- */
+#loadingLabel {
+    -fx-font-size: 3em;
+    -fx-text-fill: white;
+}
+
+#loadingRoot {
+    -fx-background-color: #009688;
+}
+
+#loadingIcon {
+    -fx-icon-color: white;
+}
+
+/* --- Root --- */
+#titleBar {
+    -fx-background-color: #00796b;
+}
+
+#titleBar > Label {
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+}
+
+.VBox {
+    -fx-font-size: 1.3em;
+    -fx-background-color: #009688;
+    -fx-fill-width: true;
+    -fx-alignment: TOP_CENTER;
+}
+
+.week-days {
+    -fx-background-color: #009688;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-fill-width: true;
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
+    -fx-font-weight: bold;
+}
+
+.event-holder {
+    -fx-content-display: center;
+    -fx-border-width: 0 1px 0 1px;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+}
+
+.container {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 2px 0 0 0;
+}
+
+.event-main {
+    -fx-background-color: #e0f2f1;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2px 0;
+    -fx-alignment: TOP_CENTER;
+    -fx-text-fill: #212121;
+    -fx-padding: 5px;
+}
+
+.event-time > Label {
+    -fx-text-fill: #212121;
+    -fx-font-weight: bold;
+}
+
+.event-details {
+    -fx-background-color: #e0f2f1;
+    -fx-alignment: TOP_CENTER;
+    -fx-end-margin: 5px;
+    -fx-start-margin: 5px;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.event-details > Label {
+    -fx-text-alignment: center;
+    -fx-text-fill: #212121;
+}
+
+.event-location {
+    -fx-text-alignment: center;
+    -fx-text-fill: #414141;
+}
+
+.navigationButtons {
+    -fx-background-color: #009688;
+}
+
+.navigationButtons:hover {
+    -fx-background-color: #0e998a;
+}
