@@ -11,4 +11,5 @@ module App {
     opens views.root;
     opens views.loading;
     opens views.settings;
+    opens app;
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<VBox id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1371.0" stylesheets="@/themes/bolue.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.root.RootController">
+<VBox id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="692.0" prefWidth="1371.0" stylesheets="@/themes/Blue.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.root.RootController">
     <HBox id="titleBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0">
         <StackedFontIcon fx:id="imageView">
             <FontIcon iconColor="white" iconLiteral="mdi-calendar" iconSize="40" />

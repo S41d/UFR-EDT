@@ -1,6 +1,9 @@
 package views.root;
 
+import app.Files;
 import biweekly.component.VEvent;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,10 +11,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.StackedFontIcon;
-import reader.Day;
-import reader.Reader;
-import reader.Week;
+import app.objects.Day;
+import app.Reader;
+import app.objects.Week;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -114,6 +118,9 @@ public class RootController {
                 populateEvents(event, day);
             }
         }
+        // set theme
+        root.getStylesheets().clear();
+        root.getStylesheets().add(Files.THEME);
     }
 
     public void setNextWeek() {
@@ -127,12 +134,20 @@ public class RootController {
     }
 
     private void fadeOut() {
-        mondayContainer.getChildren().forEach(Animations::fadeOut);
-        tuesdayContainer.getChildren().forEach(Animations::fadeOut);
-        wednesdayContainer.getChildren().forEach(Animations::fadeOut);
-        thursdayContainer.getChildren().forEach(Animations::fadeOut);
-        fridayContainer.getChildren().forEach(Animations::fadeOut);
-        saturdayContainer.getChildren().forEach(Animations::fadeOut);
-        initialize();
+        PauseTransition pauseTransition = new PauseTransition(Duration.millis(0));
+        pauseTransition.setOnFinished(event -> {
+            mondayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            tuesdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            wednesdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            thursdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            fridayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            saturdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+        });
+        SequentialTransition sequentialTransition = new SequentialTransition(
+                pauseTransition,
+                new PauseTransition(Duration.millis(200))
+        );
+        sequentialTransition.setOnFinished(event -> initialize());
+        sequentialTransition.play();
     }
 }

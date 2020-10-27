@@ -1,4 +1,5 @@
 # UFR-EDT
- UFT Emploi du temps en Java FX
+UFR Emploi du temps en Java FX
 
-Dependecies: Biweekly, Javafx-15
+**Dependecies**: Biweekly, Javafx-15, Ikonli-material-design
+

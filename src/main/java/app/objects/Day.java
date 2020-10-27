@@ -1,4 +1,4 @@
-package reader;
+package app.objects;
 
 import biweekly.component.VEvent;
 import biweekly.util.ICalDate;

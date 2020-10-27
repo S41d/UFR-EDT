@@ -1,9 +1,6 @@
 package views.root;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.SequentialTransition;
+import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
@@ -17,11 +14,11 @@ public class Animations {
         transition.play();
     }
 
-    public static void fadeOut(Node child) {
+    public static Transition fadeOut(Node child) {
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(200), child);
         fadeTransition.setFromValue(1);
         fadeTransition.setToValue(0);
-        fadeTransition.play();
+        return fadeTransition;
     }
 
     public static void zoomIn(Node node) {

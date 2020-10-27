@@ -1,4 +1,4 @@
-package reader;
+package app.objects;
 
 import java.util.ArrayList;
 import java.util.Calendar;

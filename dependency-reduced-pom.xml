@@ -26,7 +26,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>views.loading.Launcher</mainClass>
+                  <mainClass>app.Launcher</mainClass>
                 </transformer>
               </transformers>
             </configuration>
