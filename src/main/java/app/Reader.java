@@ -6,6 +6,7 @@ import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -55,21 +56,22 @@ public class Reader {
         }
     }
 
-    public void run() throws IOException {
-        ICalendar iCalendar = Biweekly.parse(Files.CALENDAR).first(); // parse the downloaded file
-        iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
-        days.forEach(day -> day.getEvents().sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
-        days.sort((day, t1) -> day.getDate().compareTo(t1.getDate().getRawComponents().toDate())); // Sort days by date
-        createWeeks();
-        days.forEach(this::addToWeek); //add days to weeks
+    public void run() {
+        try {
+            ICalendar iCalendar = Biweekly.parse(Files.CALENDAR).first();
+            iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
+            days.forEach(day -> day.getEvents().sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
+            days.sort((day, t1) -> day.getDate().compareTo(t1.getDate().getRawComponents().toDate())); // Sort days by date
+            createWeeks();
+            days.forEach(this::addToWeek); //add days to weeks
+        } catch (IOException e) {
+            Files.downloadFile(new Props().getUrl(), Files.CALENDAR);
+            run();
+        }
     }
 
 
     public Reader() {
-        try {
-            run();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        run();
     }
 }

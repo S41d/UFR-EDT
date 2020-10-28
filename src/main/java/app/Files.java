@@ -11,7 +11,7 @@ public class Files {
     public static final File PATH = new File(FileSystemView.getFileSystemView().getDefaultDirectory() + File.separator + ".emploi-du-temps");
     public static final File SETTINGS = new File(PATH + File.separator + "settings.config");
     public static final File CALENDAR = new File(DOWNLOAD_PATH + File.separator + "calendar.ics");
-    public static final String THEME = File.separator + "themes" + File.separator + new Props().getThemeName() + ".css";
+    public static final String THEME = "/themes/" + new Props().getThemeName() + ".css";
 
 
     public void checkMainDir() {

@@ -11,7 +11,7 @@ import java.io.File;
 public class Loading extends Application {
     @Override
     public void start(Stage loadingStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "views" + File.separator + "loading.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/loading.fxml"));
         loadingStage.setTitle("UFR emploi du temps");
         loadingStage.setResizable(false);
         loadingStage.initStyle(StageStyle.UNDECORATED);

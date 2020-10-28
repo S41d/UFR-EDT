@@ -16,7 +16,7 @@ public class Props {
             properties.load(inputStream);
             this.url = properties.getProperty("url");
             this.themeName = properties.getProperty("theme");
-            refreshOnStart = Boolean.parseBoolean(properties.getProperty("refreshOnStart"));
+            this.refreshOnStart = Boolean.parseBoolean(properties.getProperty("setRefreshOnStart"));
         } catch (IOException e) {
             e.printStackTrace();
         }
