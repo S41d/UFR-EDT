@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="settingsRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="536.0" prefWidth="837.0" stylesheets="@../themes/Blue.css"
+      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="views.settings.main.SettingsController">
+    <HBox id="titleBar" prefHeight="96.0" prefWidth="837.0">
+        <Label text="Paramètres">
+            <graphic>
+                <StackedFontIcon prefHeight="58.0" prefWidth="61.0">
+                    <FontIcon iconColor="white" iconLiteral="mdi-settings" iconSize="30" strokeType="OUTSIDE"
+                              strokeWidth="0.0"/>
+                </StackedFontIcon>
+            </graphic>
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+    </HBox>
+    <HBox prefHeight="431.0" prefWidth="837.0">
+        <VBox prefHeight="413.0" prefWidth="845.0">
+            <HBox prefHeight="60.0" prefWidth="797.0" styleClass="settingSectionTitle">
+                <Label prefHeight="60.0" prefWidth="164.0" text="Synchronisation"/>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="797.0">
+                <Label prefHeight="60.0" prefWidth="122.0" text="URL"/>
+                <Region prefHeight="100.0" prefWidth="175.0" HBox.hgrow="ALWAYS"/>
+                <JFXButton mnemonicParsing="false" onAction="#openUrlSelector" prefHeight="52.0" prefWidth="79.0"
+                           styleClass="settingButtons" text="Modifier">
+                    <HBox.margin>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="46.0" prefHeight="47.0" prefWidth="797.0">
+                <Label prefHeight="60.0" prefWidth="227.0" text="Synchroniser au démarrage"/>
+                <Region prefHeight="100.0" prefWidth="175.0" HBox.hgrow="ALWAYS"/>
+                <JFXToggleButton fx:id="setRefreshOnStartToggle" mnemonicParsing="false" onAction="#setRefreshOnStart"
+                                 prefHeight="48.0" prefWidth="83.0" styleClass="toggle"/>
+            </HBox>
+            <Separator prefWidth="200.0"/>
+            <HBox layoutX="30.0" layoutY="30.0" prefHeight="60.0" prefWidth="797.0" styleClass="settingSectionTitle">
+                <Label prefHeight="92.0" prefWidth="126.0" text="Couleur"/>
+                <HBox prefHeight="71.0" prefWidth="670.0" spacing="30.0" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+                    </padding>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <JFXRadioButton fx:id="colorPink" layoutX="611.0" layoutY="40.0" mnemonicParsing="false"
+                                    onAction="#setTheme" prefHeight="18.0" prefWidth="16.0"
+                                    style="-jfx-selected-color: #c2185b; -jfx-unselected-color: #c2185b;"
+                                    userData="Pink">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="color"/>
+                        </toggleGroup>
+                    </JFXRadioButton>
+                    <JFXRadioButton fx:id="colorGreen" layoutX="611.0" layoutY="40.0" mnemonicParsing="false"
+                                    onAction="#setTheme" prefHeight="18.0" prefWidth="16.0"
+                                    style="-jfx-selected-color: #009688; -jfx-unselected-color: #009688;"
+                                    toggleGroup="$color" userData="Green"/>
+                    <JFXRadioButton fx:id="colorGrayBlue" layoutX="611.0" layoutY="40.0" mnemonicParsing="false"
+                                    onAction="#setTheme" prefHeight="18.0" prefWidth="16.0"
+                                    style="-jfx-selected-color: #607D8B; -jfx-unselected-color: #607D8B;"
+                                    toggleGroup="$color" userData="GrayBlue"/>
+                    <JFXRadioButton fx:id="colorBlack" layoutX="611.0" layoutY="40.0" mnemonicParsing="false"
+                                    onAction="#setTheme" prefHeight="18.0" prefWidth="16.0"
+                                    style="-jfx-selected-color: #212121; -jfx-unselected-color: #212121;"
+                                    toggleGroup="$color" userData="Black"/>
+                    <JFXRadioButton fx:id="colorBlue" layoutX="611.0" layoutY="40.0" mnemonicParsing="false"
+                                    onAction="#setTheme" prefHeight="18.0" prefWidth="16.0"
+                                    style="-jfx-selected-color: #1976d2; -jfx-unselected-color: #1976d2;"
+                                    toggleGroup="$color" userData="Blue"/>
+                </HBox>
+            </HBox>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+        <JFXButton mnemonicParsing="false" onAction="#close" prefHeight="52.0" prefWidth="79.0"
+                   styleClass="settingButtons" text="Fermer">
+            <HBox.margin>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0"/>
+            </HBox.margin>
+        </JFXButton>
+    </HBox>
+</VBox>

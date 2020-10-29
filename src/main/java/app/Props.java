@@ -4,33 +4,33 @@ import java.io.*;
 import java.util.Properties;
 
 public class Props {
-    private String url;
-    private String themeName;
-    private Boolean refreshOnStart;
+    public static final String URL = "url";
+    public static final String SET_REFRESH_ON_START = "setRefreshOnStart";
+    public static final String THEME_NAME = "theme";
     Properties properties;
 
     public Props() {
         try {
-            InputStream inputStream = new FileInputStream(new Files().getSettingsFile());
+            Files files = new Files();
+            files.check();
+            InputStream inputStream = new FileInputStream(files.getSettingsFile());
             properties = new Properties();
             properties.load(inputStream);
-            this.url = properties.getProperty("url");
-            this.themeName = properties.getProperty("theme");
-            this.refreshOnStart = Boolean.parseBoolean(properties.getProperty("setRefreshOnStart"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String getUrl() {
-        return url;
+    public String get(String property) {
+        return properties.getProperty(property);
     }
 
-    public String getThemeName() {
-        return themeName;
-    }
-
-    public Boolean isRefreshOnStart() {
-        return refreshOnStart;
+    public void set(String property, String value) {
+        try (OutputStream outputStream = new FileOutputStream(new Files().getSettingsFile())) {
+            properties.setProperty(property, value);
+            properties.store(outputStream, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

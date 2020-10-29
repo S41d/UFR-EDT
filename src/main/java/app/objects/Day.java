@@ -23,11 +23,11 @@ public class Day {
         int eventCounter = 1;
         for (VEvent event : events) {
             returnString.append("--- Event ").append(eventCounter).append(" --- \n")
-                    .append("DateStart: ").append(event.getDateStart().getValue().toString()).append("\n")
-                    .append("DateEnd: ").append(event.getDateEnd().getValue().toString()).append("\n")
-                    .append("Summary: ").append(event.getSummary().getValue()).append("\n")
-                    .append("Location: ").append(event.getLocation().getValue()).append("\n")
-                    .append("Description: ").append(event.getDescription().getValue()).append("\n");
+                    .append("DateStart: ").append(event.getDateStart() != null ? event.getDateStart().getValue().toString() : "").append("\n")
+                    .append("DateEnd: ").append(event.getDateEnd() != null ? event.getDateEnd().getValue().toString() : "").append("\n")
+                    .append("Summary: ").append(event.getSummary() != null ? event.getSummary().getValue() : "").append("\n")
+                    .append("Location: ").append(event.getLocation() != null ? event.getLocation().getValue() : "").append("\n")
+                    .append("Description: ").append(event.getDescription() != null ? event.getDescription().getValue() : "").append("\n");
             eventCounter++;
         }
         return returnString.toString();

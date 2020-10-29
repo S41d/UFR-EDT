@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="291.0" prefWidth="649.0" stylesheets="@../themes/Blue.css"
+      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="views.settings.urlSelector.UrlController">
+    <HBox id="titleBar" prefHeight="74.0" prefWidth="649.0">
+        <Label prefHeight="58.0" prefWidth="188.0" text="URL">
+            <graphic>
+                <StackedFontIcon prefHeight="58.0" prefWidth="61.0">
+                    <FontIcon iconColor="white" iconLiteral="mdi-settings" iconSize="30" strokeType="OUTSIDE"
+                              strokeWidth="0.0"/>
+                </StackedFontIcon>
+            </graphic>
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+        </Label>
+    </HBox>
+    <HBox prefHeight="113.0" prefWidth="649.0" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="50.0" left="30.0" right="30.0" top="50.0"/>
+        </padding>
+        <Label prefHeight="40.0" prefWidth="41.0" text="URL :"/>
+        <TextField fx:id="urlTextField" prefHeight="92.0" prefWidth="548.0"
+                   style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: black;"
+                   HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <HBox prefHeight="77.0" prefWidth="649.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+        <JFXButton fx:id="saveButton" mnemonicParsing="false" onAction="#saveUrl" prefHeight="37.0" prefWidth="98.0"
+                   styleClass="settingButtons" text="Sauvegarder">
+            <HBox.margin>
+                <Insets right="10.0"/>
+            </HBox.margin>
+        </JFXButton>
+        <JFXButton fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelAction"
+                   prefHeight="46.0" prefWidth="84.0" styleClass="settingButtons" text="Annuler"/>
+    </HBox>
+</VBox>

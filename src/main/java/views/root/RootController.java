@@ -1,27 +1,30 @@
 package views.root;
 
 import app.Files;
+import app.Reader;
+import app.objects.Day;
+import app.objects.Week;
 import biweekly.component.VEvent;
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.StackedFontIcon;
-import app.objects.Day;
-import app.Reader;
-import app.objects.Week;
+import views.settings.main.Settings;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
 public class RootController {
-    public Button nextButton, previousButton;
+    public JFXButton nextButton, previousButton;
     public VBox mondayContainer,
             tuesdayContainer,
             wednesdayContainer,
@@ -30,6 +33,7 @@ public class RootController {
             saturdayContainer;
     public StackedFontIcon imageView;
     public VBox root;
+    Stage settingsStage = new Stage();
 
     Week week;
     int weekNumber = 0;
@@ -58,23 +62,25 @@ public class RootController {
 
         // adding values to the fields
         // -- timeContainer --
-        beginning.setText(getHoursAndMinutes(event.getDateStart().getValue()));
+        beginning.setText(getHoursAndMinutes(event.getDateStart() != null ? event.getDateStart().getValue() : new Date(0)));
         filler.setPrefWidth(Region.USE_COMPUTED_SIZE);
         HBox.setHgrow(filler, Priority.ALWAYS);
-        ending.setText(getHoursAndMinutes(event.getDateEnd().getValue()));
+        ending.setText(getHoursAndMinutes(event.getDateEnd() != null ? event.getDateEnd().getValue() : new Date(0)));
 
         // -- details --
-        details.setText(event.getSummary().getValue());
+        details.setText(event.getSummary() != null ? event.getSummary().getValue() : "");
         details.setWrapText(true);
         HBox.setHgrow(details, Priority.ALWAYS);
-
+        details.setMaxHeight(Double.MAX_VALUE);
+        details.setMinHeight(Region.USE_PREF_SIZE);
         // -- location --
-        location.setText(event.getLocation().getValue());
+        location.setText(event.getLocation() != null ? event.getLocation().getValue() : "");
         location.setWrapText(true);
 
         // inserting everything in their containers
         timeContainer.getChildren().addAll(beginning, filler, ending);
         detailsContainer.getChildren().add(details);
+        detailsContainer.fillHeightProperty();
         mainEventContainer.getChildren().addAll(timeContainer, detailsContainer, location);
 
         // add the container to the respective day
@@ -120,20 +126,20 @@ public class RootController {
         }
         // set theme
         root.getStylesheets().clear();
-        root.getStylesheets().add(Files.THEME);
+        root.getStylesheets().add(Files.theme);
     }
 
     public void setNextWeek() {
         ++weekNumber;
-        fadeOut();
+        fadeOutAllEvents();
     }
 
     public void setPreviousWeek() {
         --weekNumber;
-        fadeOut();
+        fadeOutAllEvents();
     }
 
-    private void fadeOut() {
+    private void fadeOutAllEvents() {
         PauseTransition pauseTransition = new PauseTransition(Duration.millis(0));
         pauseTransition.setOnFinished(event -> {
             mondayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
@@ -149,5 +155,19 @@ public class RootController {
         );
         sequentialTransition.setOnFinished(event -> initialize());
         sequentialTransition.play();
+    }
+
+    @FXML
+    private void openSettings() {
+        try {
+            new Settings().start(settingsStage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public VBox getRoot() {
+        return root;
     }
 }

@@ -1,5 +1,9 @@
 * {
     -fx-font-family: "Nimbus Sans";
+    -fx-main-color: #1976d2;
+    -fx-dark-color: #0d47a1;
+    -fx-hover-color: #3b85d0;
+    -fx-event-color: #e3f2fd;
 }
 
 /* --- Loading --- */
@@ -9,7 +13,7 @@
 }
 
 #loadingRoot {
-    -fx-background-color: #1976d2;
+    -fx-background-color: -fx-main-color;
 }
 
 #loadingIcon {
@@ -19,7 +23,7 @@
 /* --- Root --- */
 
 #titleBar {
-    -fx-background-color: #0d47a1;
+    -fx-background-color: -fx-dark-color;
 }
 
 #titleBar > Label {
@@ -29,20 +33,19 @@
 
 .VBox {
     -fx-font-size: 1.3em;
-    -fx-background-color: #1976d2;
+    -fx-background-color: -fx-main-color;
     -fx-fill-width: true;
     -fx-alignment: TOP_CENTER;
 }
 
 .week-days {
-    -fx-background-color: #1976d2;
+    -fx-background-color: inherit;
     -fx-padding: 10px;
     -fx-text-fill: white;
     -fx-alignment: CENTER;
     -fx-fill-width: true;
     -fx-start-margin: 0;
     -fx-end-margin: 0;
-    -fx-font-weight: bold;
 }
 
 .event-holder {
@@ -54,13 +57,10 @@
 
 .container {
     -fx-background-color: white;
-    -fx-border-color: black;
-    -fx-border-style: solid;
-    -fx-border-width: 2px 0 0 0;
 }
 
 .event-main {
-    -fx-background-color: #e3f2fd;
+    -fx-background-color: -fx-event-color;
     -fx-border-color: white;
     -fx-border-style: solid;
     -fx-border-width: 0 0 2px 0;
@@ -75,7 +75,7 @@
 }
 
 .event-details {
-    -fx-background-color: #e3f2fd;
+    -fx-background-color: inherit;
     -fx-alignment: TOP_CENTER;
     -fx-end-margin: 5px;
     -fx-start-margin: 5px;
@@ -94,9 +94,37 @@
 }
 
 .navigationButtons {
-    -fx-background-color: #1976d2;
+    -fx-background-color: -fx-main-color;
 }
 
 .navigationButtons:hover {
-    -fx-background-color: #3b85d0;
+    -fx-background-color: -fx-hover-color;
+}
+
+#toolbar {
+    -fx-background-color: #ececec;
+}
+
+#settingsButton {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+#settingsButton:hover {
+    -fx-background-color: transparent, lightgray;
+}
+
+/* --- Settings --- */
+.settingButtons {
+    -fx-background-color: transparent, lightgray;
+}
+
+.settingSectionTitle > Label {
+    -fx-font-weight: bold;
+    -fx-font-size: 1.3em;
+}
+
+.toggle {
+    -jfx-toggle-color: -fx-main-color;
 }

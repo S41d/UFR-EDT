@@ -7,9 +7,11 @@ module App {
     requires javafx.fxml;
     requires biweekly;
     requires java.desktop;
+    requires com.jfoenix;
     opens themes;
     opens views.root;
     opens views.loading;
-    opens views.settings;
+    opens views.settings.main;
+    opens views.settings.urlSelector;
     opens app;
 }

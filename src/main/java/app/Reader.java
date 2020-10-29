@@ -6,7 +6,6 @@ import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -21,15 +20,8 @@ public class Reader {
         return weeks;
     }
 
-    public void createWeeks() {
-        minWeekNumber = Week.getThisWeek();
-        days.forEach(day -> {
-            maxWeekNumber = Math.max(maxWeekNumber, day.getWeekOfYear());
-            minWeekNumber = Math.min(minWeekNumber, day.getWeekOfYear());
-        });
-        for (int i = minWeekNumber; i < maxWeekNumber; i++) {
-            weeks.add(new Week(i));
-        }
+    public static void main(String[] args) {
+        new Reader();
     }
 
     public void addToWeek(Day day) {
@@ -56,22 +48,35 @@ public class Reader {
         }
     }
 
-    public void run() {
-        try {
-            ICalendar iCalendar = Biweekly.parse(Files.CALENDAR).first();
-            iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
-            days.forEach(day -> day.getEvents().sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
-            days.sort((day, t1) -> day.getDate().compareTo(t1.getDate().getRawComponents().toDate())); // Sort days by date
-            createWeeks();
-            days.forEach(this::addToWeek); //add days to weeks
-        } catch (IOException e) {
-            Files.downloadFile(new Props().getUrl(), Files.CALENDAR);
-            run();
+    public void createWeeks() {
+        minWeekNumber = Week.getThisWeek();
+        days.forEach(day -> {
+            maxWeekNumber = Math.max(maxWeekNumber, day.getWeekOfYear());
+            minWeekNumber = Math.min(minWeekNumber, day.getWeekOfYear());
+        });
+        for (int i = minWeekNumber; i < maxWeekNumber; i++) {
+            weeks.add(new Week(i));
+        }
+        if (weeks.isEmpty()) {
+            weeks.add(new Week(minWeekNumber));
         }
     }
 
 
     public Reader() {
         run();
+    }
+
+    public void run() {
+        try {
+            ICalendar iCalendar = Biweekly.parse(Files.CALENDAR).first();
+            iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
+            days.forEach(day -> day.getEvents().sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
+            days.sort(Comparator.comparing(Day::getDate)); // Sort days by date
+            createWeeks();
+            days.forEach(this::addToWeek); //add days to weeks
+        } catch (IOException e) {
+            createWeeks();
+        }
     }
 }
