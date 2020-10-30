@@ -42,7 +42,7 @@ public class Day {
 
     @Override
     public String toString() {
-        return "\n------------- Day --------------" +
+        return "\n------------- Day " + dayOfWeek() + " --------------" +
                 "\n ----- DATE ----- \n" +
                 date +
                 "\n ----- EVENTS ----- \n" +

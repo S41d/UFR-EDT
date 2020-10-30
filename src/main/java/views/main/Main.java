@@ -1,4 +1,4 @@
-package views.root;
+package views.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Root extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/root.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
         primaryStage.setTitle("UFR emploi du temps");
         primaryStage.setScene(new Scene(loader.load()));
         primaryStage.show();

@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
-import views.root.Root;
+import views.main.Main;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class LoadingController {
                 }
                 ((Stage) loadingRoot.getScene().getWindow()).close();
                 Stage stage = new Stage();
-                new Root().start(stage);
+                new Main().start(stage);
             } catch (IOException e) {
                 e.printStackTrace();
             }

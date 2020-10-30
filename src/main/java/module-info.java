@@ -9,7 +9,7 @@ module App {
     requires java.desktop;
     requires com.jfoenix;
     opens themes;
-    opens views.root;
+    opens views.main;
     opens views.loading;
     opens views.settings.main;
     opens views.settings.urlSelector;

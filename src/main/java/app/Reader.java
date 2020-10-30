@@ -21,10 +21,6 @@ public class Reader {
         return weeks;
     }
 
-    public static void main(String[] args) {
-        new Reader();
-    }
-
     public void addToWeek(Day day) {
         boolean weekExists = false;
         for (Week week : weeks) {
@@ -38,6 +34,7 @@ public class Reader {
 
         if (!weekExists) {
             weeks.add(new Week(day.getWeekOfYear(), day.getYear()));
+            weeks.get(weeks.size() - 1).addDay(day);
         }
     }
 

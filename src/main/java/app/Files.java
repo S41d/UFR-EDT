@@ -36,7 +36,7 @@ public class Files {
                 Properties properties = new Properties();
                 properties.setProperty("url", "");
                 properties.setProperty("theme", "Blue");
-                properties.setProperty("setRefreshOnStart", "false");
+                properties.setProperty("setRefreshOnStart", "true");
                 properties.store(outputStream, null);
             } catch (IOException e) {
                 e.printStackTrace();

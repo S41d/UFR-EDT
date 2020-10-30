@@ -120,6 +120,10 @@
     -fx-icon-color: white;
 }
 
+#toolbarDate {
+    -fx-text-fill: white;
+}
+
 /* --- Settings --- */
 .settingButtons {
     -fx-background-color: transparent, lightgray;

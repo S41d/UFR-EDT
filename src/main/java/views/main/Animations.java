@@ -1,4 +1,4 @@
-package views.root;
+package views.main;
 
 import javafx.animation.*;
 import javafx.scene.Node;
@@ -33,5 +33,16 @@ public class Animations {
         transition.setToY(1.1);
         sequence.play();
         sequence.setOnFinished(event -> zoomOut(node));
+    }
+
+    public static Transition fadeIn(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(400), node);
+        SequentialTransition sequentialTransition = new SequentialTransition(
+                new PauseTransition(Duration.millis(300)),
+                fadeTransition
+        );
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        return sequentialTransition;
     }
 }

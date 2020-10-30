@@ -1,4 +1,4 @@
-package views.root;
+package views.main;
 
 import app.Files;
 import app.Reader;
@@ -20,10 +20,11 @@ import org.kordamp.ikonli.javafx.StackedFontIcon;
 import views.settings.main.Settings;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class RootController {
+public class MainController {
     public JFXButton nextButton, previousButton;
     public VBox mondayContainer,
             tuesdayContainer,
@@ -33,12 +34,32 @@ public class RootController {
             saturdayContainer;
     public StackedFontIcon imageView;
     public VBox root;
+    public JFXButton settingsButton;
+    public JFXButton returnButton;
+    public Label dateLabel;
+
+    public VBox[] containers;
     Stage settingsStage = new Stage();
 
     Week week;
-    int weekNumber = 0;
+    int weekIndex = 0;
     Reader reader = new Reader();
 
+
+    @FXML
+    public void initialize() {
+        containers = new VBox[]{
+                new VBox(),
+                mondayContainer,
+                tuesdayContainer,
+                wednesdayContainer,
+                thursdayContainer,
+                fridayContainer,
+                saturdayContainer
+        };
+        setFirstWeek();
+        initializer();
+    }
 
     public String getHoursAndMinutes(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -85,14 +106,7 @@ public class RootController {
 
         // add the container to the respective day
         // @formatter:off
-        switch (day.dayOfWeek()) {
-            case 2: mondayContainer.getChildren().add(mainEventContainer); break;
-            case 3: tuesdayContainer.getChildren().add(mainEventContainer); break;
-            case 4: wednesdayContainer.getChildren().add(mainEventContainer); break;
-            case 5: thursdayContainer.getChildren().add(mainEventContainer); break;
-            case 6: fridayContainer.getChildren().add(mainEventContainer); break;
-            case 7: saturdayContainer.getChildren().add(mainEventContainer); break;
-        }
+        containers[day.dayOfWeek() - 1].getChildren().add(mainEventContainer);
         // @formatter:on
         Animations.zoomIn(mainEventContainer);
         // set styling
@@ -104,70 +118,83 @@ public class RootController {
         location.getStyleClass().add("event-location");
     }
 
-    @FXML
-    public void initialize() {
-        // set previous button disabled for the first week
-        previousButton.setDisable(this.weekNumber == 0);
-        // set next button disabled for the last week
-        nextButton.setDisable(this.weekNumber == reader.getWeeks().size() - 1);
-        // empty all containers
-        mondayContainer.getChildren().clear();
-        tuesdayContainer.getChildren().clear();
-        wednesdayContainer.getChildren().clear();
-        thursdayContainer.getChildren().clear();
-        fridayContainer.getChildren().clear();
-        saturdayContainer.getChildren().clear();
+    private void setFirstWeek() {
+        ArrayList<Week> weeks = reader.getWeeks();
+        for (int i = 0, weeksSize = weeks.size(); i < weeksSize; i++) {
+            Week week = weeks.get(i);
+            if (week.getWeekNumber() == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
+                this.weekIndex = i;
+            }
+        }
+    }
 
-        this.week = reader.getWeeks().get(weekNumber);
+    private void initializer() {
+        // set previous button disabled for the first week
+        previousButton.setDisable(this.weekIndex == 0);
+        // set next button disabled for the last week
+        nextButton.setDisable(this.weekIndex == reader.getWeeks().size() - 1);
+
+        // empty all containers
+        for (VBox container : containers) {
+            container.getChildren().clear();
+        }
+
+        this.week = reader.getWeeks().get(weekIndex);
         for (Day day : week.getDays()) {
             for (VEvent event : day.getEvents()) {
                 populateEvents(event, day);
             }
         }
+        for (VBox container : containers) {
+            if (container.getChildren().isEmpty()) {
+                Label label = new Label("Pas d'évènement");
+                label.setOpacity(0);
+                container.getChildren().add(label);
+                Animations.fadeIn(label).play();
+            }
+        }
         // set theme
         root.getStylesheets().clear();
         root.getStylesheets().add(Files.theme);
+        dateLabel.setText(this.week.getBeginDate() + " - " + this.week.getEndDate());
+    }
+
+    public void returnButtonAction() {
+        setFirstWeek();
+        fadeOutAllEvents();
     }
 
     public void setNextWeek() {
-        ++weekNumber;
+        ++weekIndex;
         fadeOutAllEvents();
     }
 
     public void setPreviousWeek() {
-        --weekNumber;
+        --weekIndex;
         fadeOutAllEvents();
     }
 
     private void fadeOutAllEvents() {
         PauseTransition pauseTransition = new PauseTransition(Duration.millis(0));
         pauseTransition.setOnFinished(event -> {
-            mondayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
-            tuesdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
-            wednesdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
-            thursdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
-            fridayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
-            saturdayContainer.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            for (VBox container : containers) {
+                container.getChildren().forEach(child -> Animations.fadeOut(child).play());
+            }
         });
         SequentialTransition sequentialTransition = new SequentialTransition(
                 pauseTransition,
                 new PauseTransition(Duration.millis(200))
         );
-        sequentialTransition.setOnFinished(event -> initialize());
+        sequentialTransition.setOnFinished(event -> initializer());
         sequentialTransition.play();
     }
 
     @FXML
-    private void openSettings() {
+    private void settingsButtonAction() {
         try {
             new Settings().start(settingsStage);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public VBox getRoot() {
-        return root;
     }
 }
