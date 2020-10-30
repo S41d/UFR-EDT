@@ -15,7 +15,7 @@ public class Files {
     public static String theme = "/themes/" + PROPS.get(Props.THEME_NAME) + ".css";
 
     public static void refreshTheme() {
-        theme = "/themes/" + PROPS.get(Props.THEME_NAME) + ".css";
+        theme = "/themes/" + new Props().get(Props.THEME_NAME) + ".css";
     }
 
     public void checkMainDir() {

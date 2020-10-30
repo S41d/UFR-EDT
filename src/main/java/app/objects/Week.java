@@ -6,6 +6,7 @@ import java.util.Calendar;
 public class Week {
     private final int weekNumber;
     private final ArrayList<Day> days;
+    private final int year;
 
     public static int getThisWeek() {
         Calendar calendar = Calendar.getInstance();
@@ -20,7 +21,8 @@ public class Week {
         return this.days;
     }
 
-    public Week(int weekNumber) {
+    public Week(int weekNumber, int year) {
+        this.year = year;
         this.days = new ArrayList<>();
         this.weekNumber = weekNumber;
     }
@@ -38,5 +40,9 @@ public class Week {
 
     public boolean containsDay(Day day) {
         return this.days.contains(day);
+    }
+
+    public int getYear() {
+        return this.year;
     }
 }

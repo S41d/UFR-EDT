@@ -8,6 +8,7 @@ import biweekly.component.VEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 
 public class Reader {
@@ -25,11 +26,18 @@ public class Reader {
     }
 
     public void addToWeek(Day day) {
+        boolean weekExists = false;
         for (Week week : weeks) {
-            if (week.getWeekNumber() == day.getWeekOfYear()) {
+            if (week.getWeekNumber() == day.getWeekOfYear() &&
+                    week.getYear() == day.getYear()) {
                 week.addDay(day);
+                weekExists = true;
                 break;
             }
+        }
+
+        if (!weekExists) {
+            weeks.add(new Week(day.getWeekOfYear(), day.getYear()));
         }
     }
 
@@ -48,21 +56,6 @@ public class Reader {
         }
     }
 
-    public void createWeeks() {
-        minWeekNumber = Week.getThisWeek();
-        days.forEach(day -> {
-            maxWeekNumber = Math.max(maxWeekNumber, day.getWeekOfYear());
-            minWeekNumber = Math.min(minWeekNumber, day.getWeekOfYear());
-        });
-        for (int i = minWeekNumber; i < maxWeekNumber; i++) {
-            weeks.add(new Week(i));
-        }
-        if (weeks.isEmpty()) {
-            weeks.add(new Week(minWeekNumber));
-        }
-    }
-
-
     public Reader() {
         run();
     }
@@ -73,10 +66,14 @@ public class Reader {
             iCalendar.getEvents().forEach(this::addToDay); // Store all the events in days
             days.forEach(day -> day.getEvents().sort(Comparator.comparing(event -> event.getDateStart().getValue()))); // Sort each day's events
             days.sort(Comparator.comparing(Day::getDate)); // Sort days by date
-            createWeeks();
+            minWeekNumber = Week.getThisWeek();
+            days.forEach(day -> {
+                maxWeekNumber = Math.max(maxWeekNumber, day.getWeekOfYear());
+                minWeekNumber = Math.min(minWeekNumber, day.getWeekOfYear());
+            });
             days.forEach(this::addToWeek); //add days to weeks
         } catch (IOException e) {
-            createWeeks();
+            weeks.add(new Week(0, Calendar.getInstance().get(Calendar.YEAR)));
         }
     }
 }

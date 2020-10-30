@@ -20,11 +20,11 @@ public class LoadingController {
 
     @FXML
     public void initialize() {
+        loadingRoot.getStylesheets().clear();
+        loadingRoot.getStylesheets().add(Files.theme);
         PauseTransition delayTransition = new PauseTransition(Duration.seconds(2));
         delayTransition.setOnFinished(event -> {
             try {
-                loadingRoot.getStylesheets().clear();
-                loadingRoot.getStylesheets().add(Files.theme);
                 Props properties = new Props();
                 if (Boolean.parseBoolean(properties.get(Props.SET_REFRESH_ON_START))) {
                     Files.downloadFile(properties.get(Props.URL), Files.CALENDAR);

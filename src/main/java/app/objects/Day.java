@@ -9,6 +9,7 @@ import java.util.Calendar;
 public class Day {
     ICalDate date;
     ArrayList<VEvent> events;
+    Calendar calendar = Calendar.getInstance();
 
     public ICalDate getDate() {
         return date;
@@ -36,6 +37,7 @@ public class Day {
     public Day(ICalDate date) {
         this.date = date;
         this.events = new ArrayList<>();
+        calendar.setTime(date);
     }
 
     @Override
@@ -58,14 +60,14 @@ public class Day {
     }
 
     public int getWeekOfYear() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
     public int dayOfWeek() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(this.getDate());
         return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    public int getYear() {
+        return calendar.get(Calendar.YEAR);
     }
 }
