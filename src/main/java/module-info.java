@@ -1,17 +1,15 @@
-module App {
-    requires org.kordamp.ikonli.materialdesign;
-    requires org.kordamp.iconli.core;
-    requires org.kordamp.ikonli.javafx;
-    requires javafx.controls;
-    requires javafx.graphics;
-    requires javafx.fxml;
+module UFR.EDT {
     requires biweekly;
+    requires com.fasterxml.jackson.core;
     requires java.desktop;
+    requires javafx.fxml;
+    requires javafx.graphics;
+    requires javafx.controls;
+    requires org.kordamp.ikonli.javafx;
     requires com.jfoenix;
+
     opens themes;
     opens views.main;
-    opens views.loading;
     opens views.settings.main;
     opens views.settings.urlSelector;
-    opens app;
 }

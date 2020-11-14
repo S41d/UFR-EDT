@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import views.main.Main;
 import views.settings.urlSelector.UrlSelector;
 
 import java.io.IOException;
@@ -64,6 +65,8 @@ public class SettingsController {
         props.set(Props.THEME_NAME, (String) color.getSelectedToggle().getUserData());
         Files.refreshTheme();
         initialize();
+        Main.controller.root.getStylesheets().clear();
+        Main.controller.root.getStylesheets().add(Files.theme);
     }
 
     public void refresh() {

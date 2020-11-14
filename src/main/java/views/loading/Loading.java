@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
-
 public class Loading extends Application {
     @Override
     public void start(Stage loadingStage) throws Exception {

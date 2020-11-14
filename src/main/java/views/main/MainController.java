@@ -1,6 +1,7 @@
 package views.main;
 
 import app.Files;
+import app.Props;
 import app.Reader;
 import app.objects.Day;
 import app.objects.Week;
@@ -39,6 +40,7 @@ public class MainController {
     public Label dateLabel;
 
     public VBox[] containers;
+    public JFXButton refreshButton;
     Stage settingsStage = new Stage();
 
     Week week;
@@ -196,5 +198,14 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void refresh() {
+        Props properties = new Props();
+        Files.downloadFile(properties.get(Props.URL), Files.CALENDAR);
+        reader = new Reader();
+        fadeOutAllEvents();
+        initialize();
     }
 }

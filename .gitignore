@@ -30,5 +30,10 @@ hs_err_pid*
 /dependecies/javafx-sdk-15
 /dependecies/biweekly
 /dependecies
-/out
 /target/
+.classpath
+.project
+.settings/
+src/test/
+.vscode/
+lib/

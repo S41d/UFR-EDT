@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
-
-<AnchorPane id="loadingRoot" fx:id="loadingRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="742.0" stylesheets="@../themes/Blue.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.loading.LoadingController">
-    <StackedFontIcon layoutX="321.0" layoutY="108.0">
-        <FontIcon id="loadingIcon" fx:id="loadingIcon" iconLiteral="mdi-calendar" iconSize="100" />
-    </StackedFontIcon>
-    <Label id="loadingLabel" fx:id="loadingLabel" layoutX="168.0" layoutY="234.0" text="UFR Emploi du temps">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import org.kordamp.ikonli.javafx.StackedFontIcon?>
+<AnchorPane id="loadingRoot" fx:id="loadingRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="468.0" prefWidth="742.0" stylesheets="@../themes/Blue.css"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="views.loading.LoadingController">
+    <StackedFontIcon layoutX="321.0" layoutY="108.0"/>
+    <Label id="loadingLabel" fx:id="loadingLabel" layoutX="180.0" layoutY="234.0" text="UFR Emploi du temps">
         <font>
-            <Font name="NimbusSans-Regular" size="64.0" />
+            <Font name="NimbusSans-Regular" size="64.0"/>
         </font>
     </Label>
+    <FontIcon id="loadingIcon" fx:id="loadingIcon" iconLiteral="mdi-calendar" iconSize="100" layoutX="321.0"
+              layoutY="196.0"/>
 </AnchorPane>

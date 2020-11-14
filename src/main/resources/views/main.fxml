@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.*?>
-
+<?import java.lang.*?>
 <VBox id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1391.0" stylesheets="@/themes/Blue.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.main.MainController">
     <HBox id="titleBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="1371.0">
         <StackedFontIcon fx:id="imageView">
@@ -139,23 +138,36 @@
         </VBox>
     </HBox>
     <HBox id="toolbar" prefHeight="38.0" prefWidth="1371.0">
-        <Region prefHeight="0.0" prefWidth="1323.0" HBox.hgrow="ALWAYS" />
-        <Label id="toolbarDate" fx:id="dateLabel" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="28.0" prefWidth="385.0" text="Semaine de ">
-            <HBox.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </HBox.margin>
-         <padding>
-            <Insets bottom="2.0" />
-         </padding>
-        </Label>
-        <JFXButton id="settingsButton" fx:id="returnButton" layoutX="1348.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnButtonAction" prefWidth="44.0" style="-fx-border-width: 0;">
+        <JFXButton id="settingsButton" fx:id="returnButton" layoutX="1348.0" layoutY="15.0" mnemonicParsing="false"
+                   onAction="#returnButtonAction" prefWidth="44.0" style="-fx-border-width: 0;">
             <graphic>
                 <StackedFontIcon>
-                    <FontIcon id="settingsIcon" iconLiteral="mdi-refresh" iconSize="15" />
+                    <FontIcon id="settingsIcon" iconLiteral="mdi-redo" iconSize="15"/>
                 </StackedFontIcon>
             </graphic>
             <HBox.margin>
-                <Insets bottom="5.0" left="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" top="5.0"/>
+            </HBox.margin>
+        </JFXButton>
+        <Region prefHeight="0.0" prefWidth="1323.0" HBox.hgrow="ALWAYS"/>
+        <Label id="toolbarDate" fx:id="dateLabel" alignment="CENTER_RIGHT" minWidth="100.0" prefHeight="28.0"
+               prefWidth="385.0" text="Semaine de ">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+            <padding>
+                <Insets bottom="2.0"/>
+            </padding>
+        </Label>
+        <JFXButton id="settingsButton" fx:id="refreshButton" layoutX="1348.0" layoutY="15.0" mnemonicParsing="false"
+                   onAction="#refresh" prefWidth="44.0" style="-fx-border-width: 0;">
+            <graphic>
+                <StackedFontIcon>
+                    <FontIcon id="settingsIcon" iconLiteral="mdi-refresh" iconSize="15"/>
+                </StackedFontIcon>
+            </graphic>
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0" top="5.0"/>
             </HBox.margin>
         </JFXButton>
         <JFXButton id="settingsButton" fx:id="settingsButton" mnemonicParsing="false" onAction="#settingsButtonAction" style="-fx-border-width: 0;">
