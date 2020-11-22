@@ -8,10 +8,9 @@ public class Week {
     private final int weekNumber;
     private final ArrayList<Day> days;
     private final int year;
-    Calendar calendar = Calendar.getInstance();
+    public static Calendar calendar = Calendar.getInstance();
 
     public static int getThisWeek() {
-        Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
@@ -56,7 +55,7 @@ public class Week {
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         formattedDateStr += calendar.get(Calendar.DAY_OF_MONTH);
         formattedDateStr += "/";
-        formattedDateStr += calendar.get(Calendar.MONTH);
+        formattedDateStr += calendar.get(Calendar.MONTH) == 0 ? 12 : calendar.get(Calendar.MONTH);
         return formattedDateStr;
     }
 
@@ -68,7 +67,7 @@ public class Week {
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         formattedDateStr += calendar.get(Calendar.DAY_OF_MONTH);
         formattedDateStr += "/";
-        formattedDateStr += calendar.get(Calendar.MONTH);
+        formattedDateStr += calendar.get(Calendar.MONTH) == 0 ? 12 : calendar.get(Calendar.MONTH);
         return formattedDateStr;
     }
 }

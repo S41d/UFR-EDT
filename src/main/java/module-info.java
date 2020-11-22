@@ -9,6 +9,7 @@ module UFR.EDT {
     requires com.jfoenix;
 
     opens themes;
+    opens views.loading;
     opens views.main;
     opens views.settings.main;
     opens views.settings.urlSelector;

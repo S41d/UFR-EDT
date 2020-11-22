@@ -23,6 +23,7 @@ public class SettingsController {
             colorGreen,
             colorGrayBlue;
     Props props;
+    Stage urlSelectorStage = new Stage();
 
     @FXML
     public void initialize() {
@@ -48,8 +49,7 @@ public class SettingsController {
     @FXML
     private void openUrlSelector() {
         try {
-            Stage stage = new Stage();
-            new UrlSelector().start(stage);
+            new UrlSelector().start(urlSelectorStage);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,6 +67,8 @@ public class SettingsController {
         initialize();
         Main.controller.root.getStylesheets().clear();
         Main.controller.root.getStylesheets().add(Files.theme);
+        UrlSelector.controller.root.getStylesheets().clear();
+        UrlSelector.controller.root.getStylesheets().add(Files.theme);
     }
 
     public void refresh() {

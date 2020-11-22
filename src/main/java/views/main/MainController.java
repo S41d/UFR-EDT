@@ -122,6 +122,7 @@ public class MainController {
 
     private void setFirstWeek() {
         ArrayList<Week> weeks = reader.getWeeks();
+        this.week = reader.getWeeks().get(weekIndex);
         for (int i = 0, weeksSize = weeks.size(); i < weeksSize; i++) {
             Week week = weeks.get(i);
             if (week.getWeekNumber() == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
@@ -141,7 +142,6 @@ public class MainController {
             container.getChildren().clear();
         }
 
-        this.week = reader.getWeeks().get(weekIndex);
         for (Day day : week.getDays()) {
             for (VEvent event : day.getEvents()) {
                 populateEvents(event, day);
@@ -167,12 +167,12 @@ public class MainController {
     }
 
     public void setNextWeek() {
-        ++weekIndex;
+        this.week = reader.getWeeks().get(++weekIndex);
         fadeOutAllEvents();
     }
 
     public void setPreviousWeek() {
-        --weekIndex;
+        this.week = reader.getWeeks().get(--weekIndex);
         fadeOutAllEvents();
     }
 
@@ -206,6 +206,5 @@ public class MainController {
         Files.downloadFile(properties.get(Props.URL), Files.CALENDAR);
         reader = new Reader();
         fadeOutAllEvents();
-        initialize();
     }
 }
