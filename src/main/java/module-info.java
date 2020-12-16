@@ -1,6 +1,5 @@
 module UFR.EDT {
     requires biweekly;
-    requires com.fasterxml.jackson.core;
     requires java.desktop;
     requires javafx.fxml;
     requires javafx.graphics;
